@@ -12,6 +12,10 @@ class InfoPage extends Component {
     this.props.dispatch({type:'FETCH_SHELF'});
   }
 
+  handleDelete = (id) => () => {
+    this.props.dispatch({type: 'DELETE_SHELF', payload: id });
+  }
+
   render() {
     return (
       <div>
@@ -21,11 +25,12 @@ class InfoPage extends Component {
               <tr>
                 <th>Description</th>
                 <th>Image</th>
+                <th>Remove Item</th>
               </tr>
             </thead>
             <tbody>
               {this.props.shelf.map((item) => 
-              <tr><td>{item.description}</td><td><img width="320" height="240" src={item.image_url}/></td></tr>)}
+              <tr><td>{item.description}</td><td><img width="320" height="240" src={item.image_url}/></td><td><button onClick={this.handleDelete(item.id)}>Delete</button></td></tr>)}
             </tbody>
           </table>
       </div>
