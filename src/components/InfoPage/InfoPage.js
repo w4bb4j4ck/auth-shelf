@@ -33,6 +33,10 @@ class InfoPage extends Component {
     }
   } // end login
 
+  handleDelete = (id) => () => {
+    this.props.dispatch({type: 'DELETE_SHELF', payload: id });
+  }
+
   render() {
     console.log(this.props);
     
@@ -49,6 +53,18 @@ class InfoPage extends Component {
           <tbody>
             {this.props.shelf.map(item => (
               <tr>
+
+                <th>Description</th>
+                <th>Image</th>
+                <th>Remove Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.props.shelf.map((item) => 
+              <tr><td>{item.description}</td><td><img width="320" height="240" src={item.image_url}/></td><td><button onClick={this.handleDelete(item.id)}>Delete</button></td></tr>)}
+            </tbody>
+          </table>
+
                 <td>{item.description}</td>
                 <td>
                   <img width="320" height="240" src={item.image_url} />
@@ -92,6 +108,7 @@ class InfoPage extends Component {
             </div>
           </form>
         </div>
+
       </div>
     );
   }
