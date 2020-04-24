@@ -1,7 +1,5 @@
-const shelf = (state = [], action) => {
+const personalShelfReducer = (state = [], action) => {
     switch (action.type) {
-      case 'SET_SHELF':
-        return action.payload;
       case 'SET_PERSONAL_SHELF':
         return action.payload;
       default:
@@ -9,5 +7,4 @@ const shelf = (state = [], action) => {
     }
   };
 
-  export default shelf;
-  
+  export default personalShelfReducer;
