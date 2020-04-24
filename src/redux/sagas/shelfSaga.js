@@ -16,7 +16,7 @@ function* addBook(action){
     try{
         const response = yield axios.post('/api/shelf', action.payload)
         console.log(response)
-        console.log(action.payload)
+
         yield put ({type: 'FETCH_SHELF'});
         yield put ({type: 'FETCH_PERSONAL_SHELF', payload: action.payload.user_id});
     }
@@ -28,7 +28,9 @@ function* addBook(action){
 function* deleteShelf(action) {
     try {
         //passes id from the payload to the server
-        yield axios.delete(`/api/shelf/${action.payload}`);
+        console.log(action.payload)
+        yield axios.delete(`/api/shelf/${action.payload.book_id}`);
+        yield put ({type: 'FETCH_PERSONAL_SHELF', payload: action.payload.user_id});
         yield put( {type: 'FETCH_SHELF'});
     }
     catch(error){
