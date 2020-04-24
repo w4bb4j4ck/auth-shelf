@@ -33,11 +33,22 @@ function* deleteShelf(action) {
         console.log('Error in deleteShelf', error);
     }
 }
+function* fetchPersonalShelf(action) {
+    try{
+        const response = yield axios.get(`/api/shelf/${action.payload}`);
+        yield put ({type: 'SET_PERSONAL_SHELF', payload: response.data});
+    }
+    catch(error){
+        console.log('Error in fetchPersonalShelf', error)
+    }
+    
+}
 
 function* shelfSaga() {
   yield takeLatest('FETCH_SHELF', fetchShelf);
   yield takeLatest('DELETE_SHELF', deleteShelf);
   yield takeLatest('ADD_BOOK', addBook)
+  yield takeLatest('FETCH_PERSONAL_SHELF', fetchPersonalShelf)
 }
 
 export default shelfSaga;

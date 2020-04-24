@@ -65,6 +65,13 @@ router.get('/count', (req, res) => {
  * Return a specific item by id
  */
 router.get('/:id', (req, res) => {
+  const queryText = 'SELECT * FROM "item" WHERE user_id = $1';
+  pool.query(queryText, [req.params.id])
+  .then((result) => { res.send(result.rows); })
+  .catch((error) => {
+    console.log('Error in router.get.', error);
+    res.sendStatus(500);
+  });
 
 });
 

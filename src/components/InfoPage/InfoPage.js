@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PersonalBooks from '../PersonalBooks/PersonalBooks'
 
 class InfoPage extends Component {
   state = {
@@ -100,6 +101,7 @@ class InfoPage extends Component {
             </div>
           </form>
         </div>
+        <PersonalBooks/>
       </div>
     );
   }
