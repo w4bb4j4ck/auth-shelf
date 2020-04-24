@@ -35,7 +35,11 @@ class InfoPage extends Component {
   }; // end login
 
   handleDelete = id => () => {
-    this.props.dispatch({ type: "DELETE_SHELF", payload: id });
+    console.log(this.props)
+    this.props.dispatch({ type: "DELETE_SHELF", payload: {
+      book_id: id,
+      user_id: this.props.user.id
+     } });
   };
 
   render() {
