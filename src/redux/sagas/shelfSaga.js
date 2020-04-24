@@ -16,7 +16,9 @@ function* addBook(action){
     try{
         const response = yield axios.post('/api/shelf', action.payload)
         console.log(response)
+        console.log(action.payload)
         yield put ({type: 'FETCH_SHELF'});
+        yield put ({type: 'FETCH_PERSONAL_SHELF', payload: action.payload.user_id});
     }
     catch(error){
         console.log('error in addBook', error)
